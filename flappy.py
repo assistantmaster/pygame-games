@@ -8,6 +8,7 @@ height = 720
 
 screen = pygame.display.set_mode((width,height))
 pygame.display.set_caption("Flappy Bird")
+pygame.display.set_icon(pygame.image.load("./images/favicon4.png"))
 
 font = pygame.font.Font(None,20)
 font2 = pygame.font.Font(None,40)
@@ -20,10 +21,10 @@ pipebottom = pygame.image.load("./images/pipe unten.png")
 
 playerx = 50
 playery = 300
-playerspeed = 5
+playerspeed = 1
 punkte = 0
-pipespeedx = 4
-pipefrequency = 150
+pipespeedx = 1
+pipefrequency = 500
 pipegap = 150
 pipesy = []
 pipesx = []

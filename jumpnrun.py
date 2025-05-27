@@ -16,7 +16,7 @@ pygame.display.set_icon(pygame.image.load("./images/favicon1.png"))
 font = pygame.font.Font(None,20)
 font2 = pygame.font.Font(None,100)
 font3 = pygame.font.Font(None,40)
-copyright = font.render('© 2025 by Jannis und Timo', True, (150,150,150))
+copyright = font.render('© 2025 by Doktor_TG und assistantmaster', True, (150,150,150))
 gewonnen = font2.render('GEWONNEN!', True, (255,255,255))
 
 background = pygame.image.load("./images/background1.jpg")

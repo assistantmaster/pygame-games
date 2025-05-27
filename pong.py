@@ -10,13 +10,14 @@ height = 720
 
 screen = pygame.display.set_mode((width, height), pygame.RESIZABLE)
 pygame.display.set_caption("Pong")
-#pygame.display.set_icon(pygame.image.load("./images/favicon.png"))
+pygame.display.set_icon(pygame.image.load("./images/favicon3.jpg"))
 
 font = pygame.font.Font(None,20)
 font2 = pygame.font.Font(None,100)
 font3 = pygame.font.Font(None,40)
-copyright = font.render('© 2025 by Timo', True, (150,150,150))
+copyright = font.render('© 2025 by assistantmaster', True, (150,150,150))
 
+background = pygame.image.load("./images/background3.jpg")
 
 p1y = 300
 p2y = 300
@@ -38,7 +39,7 @@ else:
 ballspeedy = random.uniform(-2*math.pi,2*math.pi)/10
 
 for i in range(3, 0, -1):
-    screen.fill((0, 0, 0))
+    screen.blit(background, (0,0))
     pygame.draw.rect(screen, (255, 255, 255), (40, p1y, 10, 100))
     pygame.draw.rect(screen, (255, 255, 255), (screen.get_width()-50, p2y, 10, 100))
     pygame.draw.circle(screen, (255, 255, 255), (screen.get_width()/2, screen.get_height()/2),10)
@@ -54,8 +55,8 @@ starttime = time.time()
 
 running = True
 while running:
-
-    screen.fill((0, 0, 0))
+    
+    screen.blit(background, (0,0))
     pygame.draw.rect(screen, (255, 255, 255), (40, p1y, 10, 100))
     pygame.draw.rect(screen, (255, 255, 255), (screen.get_width()-50, p2y, 10, 100))
     pygame.draw.circle(screen, (255, 255, 255), (ballx, bally),10)

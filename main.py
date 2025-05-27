@@ -9,91 +9,104 @@ width = 1280
 height = 720
 
 screen = pygame.display.set_mode((width, height))
-pygame.display.set_caption("")
-#pygame.display.set_icon(pygame.image.load("./images/favicon.png"))
+pygame.display.set_caption("Pygame Minigames")
+pygame.display.set_icon(pygame.image.load("./images/favicon.jpg"))
 
 font = pygame.font.Font(None,20)
 font2 = pygame.font.Font(None,100)
 font3 = pygame.font.Font(None,40)
+copyright = font.render('© 2025 by assistantmaster', True, (150,150,150))
 
-jumpnrunimg = pygame.image.load("./images/jumpnrun.png") # 250x250 pixel
-shooterimg = pygame.image.load("./images/shooter.png")
-pongimg = pygame.image.load("./images/pong.png")
-flappyimg = pygame.image.load("./images/flappy.png")
+jumpnrunimg_orig = pygame.image.load("./images/favicon1.png") # 250x250 pixel
+shooterimg_orig = pygame.image.load("./images/favicon2.jpg")
+pongimg_orig = pygame.image.load("./images/favicon3.jpg")
+flappyimg_orig = pygame.image.load("./images/favicon4.png")
+
+background = pygame.image.load("./images/background.jpg")
+
+jumpnrunimg = pygame.transform.scale(jumpnrunimg_orig, (250,250))
+shooterimg = pygame.transform.scale(shooterimg_orig, (250,250))
+pongimg = pygame.transform.scale(pongimg_orig, (250,250))
+flappyimg = pygame.transform.scale(flappyimg_orig, (250,250))
 
 jumpnrun = False
 shooter = False
 pong = False
 flappy = False
 
-background = pygame.image.load("./images/background.png")
+prozess = None
+window_hidden = False
 
 running = True
 while running:
 
-    if prozess.poll() is None:
+    if prozess is not None and prozess.poll() is not None:
         jumpnrun = False
         shooter = False
         pong = False
         flappy = False
+        prozess = None
 
-    if jumpnrun:
-        screen = pygame.display.set_mode((width, height), flags=pygame.HIDDEN)
-    elif shooter:
-        screen = pygame.display.set_mode((width, height), flags=pygame.HIDDEN)
-    elif pong:
-        screen = pygame.display.set_mode((width, height), flags=pygame.HIDDEN)
-    elif flappy:
-        screen = pygame.display.set_mode((width, height), flags=pygame.HIDDEN)
+    if prozess is not None:
+        if not window_hidden:
+            screen = pygame.display.set_mode((width, height), flags=pygame.HIDDEN)
+            window_hidden = True
     else:
-        screen = pygame.display.set_mode((width, height), flags=pygame.SHOWN)
+        if window_hidden:
+            screen = pygame.display.set_mode((width, height), flags=pygame.SHOWN)
+            window_hidden = False
         screen.blit(background, (0,0))
-        screen.blit(jumpnrunimg, (55,55))
-        screen.blit(shooterimg, (55,415))
-        screen.blit(pongimg, (415,55))
-        screen.blit(flappyimg (415,415))
+
+        mouse = pygame.mouse.get_pos()
+        mouse_clicked = False
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+            if event.type == pygame.MOUSEBUTTONUP:
+                mouse_clicked = True
+
+        if 55 < mouse[0] < 305 and 55 < mouse[1] < 305:
+            img = pygame.transform.scale(jumpnrunimg_orig, (290,290))
+            screen.blit(img, (35,35))
+            if mouse_clicked and not jumpnrun:
+                jumpnrun = True
+                prozess = subprocess.Popen(['python', 'jumpnrun.py'], shell=True)
+        else:
+            img = pygame.transform.scale(jumpnrunimg_orig, (250,250))
+            screen.blit(img, (55,55))
+
+        if 55 < mouse[0] < 305 and 415 < mouse[1] < 665:
+            img = pygame.transform.scale(shooterimg_orig, (290,290))
+            screen.blit(img, (35,395))
+            if mouse_clicked and not shooter:
+                shooter = True
+                prozess = subprocess.Popen(['python', 'shooter.py'], shell=True)
+        else:
+            img = pygame.transform.scale(shooterimg_orig, (250,250))
+            screen.blit(img, (55,415))
+
+        if 415 < mouse[0] < 665 and 55 < mouse[1] < 305:
+            img = pygame.transform.scale(pongimg_orig, (290,290))
+            screen.blit(img, (395,35))
+            if mouse_clicked and not pong:
+                pong = True
+                prozess = subprocess.Popen(['python', 'pong.py'], shell=True)
+        else:
+            img = pygame.transform.scale(pongimg_orig, (250,250))
+            screen.blit(img, (415,55))
+
+        if 415 < mouse[0] < 665 and 415 < mouse[1] < 665:
+            img = pygame.transform.scale(flappyimg_orig, (290,290))
+            screen.blit(img, (395,395))
+            if mouse_clicked and not flappy:
+                flappy = True
+                prozess = subprocess.Popen(['python', 'flappy.py'], shell=True)
+        else:
+            img = pygame.transform.scale(flappyimg_orig, (250,250))
+            screen.blit(img, (415,415))
+
         screen.blit(copyright, (0,700))
-
-
-    keys = pygame.key.get_pressed()
-    mouse = pygame.mouse.get_pos
-
-    if 100 < mouse[0] < 300 and 100 < mouse[1] < 300:
-        if keys[pygame.MOUSEBUTTONUP]:
-            jumpnrun = True
-            prozess = subprocess.Popen(['start', 'python', 'jumpnrun.py'], shell=True)
-        jumpnrunimg = pygame.transform.scale(jumpnrunimg, (290,290))
-        screen.blit(jumpnrunimg, (35,35))
-    else:
-    	jumpnrunimg = pygame.transform.scale(jumpnrunimg, (250,250))
-    if 100 < mouse[0] < 300 and 500 < mouse[1] < 700:
-        if keys[pygame.MOUSEBUTTONUP]:
-            jumpnrun = True
-            prozess = subprocess.Popen(['start', 'python', 'shooter.py'], shell=True)
-        shooterimg = pygame.transform.scale(shooterimg, (290,290))
-        screen.blit(shooterimg, (35, 395))
-    else:
-    	shooterimg = pygame.transform.scale(shooterimg, (250,250))
-    if 500 < mouse[0] < 700 and 100 < mouse[1] < 300:
-        if keys[pygame.MOUSEBUTTONUP]:
-            jumpnrun = True
-            prozess = subprocess.Popen(['start', 'python', 'pong.py'], shell=True)
-        pongimg = pygame.transform.scale(pongimg, (290,290))
-        screen.blit(pongimg, (395,35))
-    else:
-    	pongimg = pygame.transform.scale(pongimg, (250,250))
-    if 500 < mouse[0] < 700 and 500 < mouse[1] < 700:
-        if keys[pygame.MOUSEBUTTONUP]:
-            jumpnrun = True
-            prozess = subprocess.Popen(['start', 'python', 'flappy.py'], shell=True)
-        flappyimg = pygame.transform.scale(flappyimg, (290,290))
-        screen.blit(flappyimg, (395,395))
-    else:
-    	flappyimg = pygame.transform.scale(flappyimg, (290,290))
-
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
 
     pygame.display.flip()
 

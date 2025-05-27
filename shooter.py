@@ -15,7 +15,7 @@ pygame.display.set_icon(pygame.image.load("./images/favicon2.jpg"))
 font = pygame.font.Font(None,20)
 font2 = pygame.font.Font(None,100)
 font3 = pygame.font.Font(None,40)
-copyright = font.render('© 2025 by Timo', True, (150,150,150))
+copyright = font.render('© 2025 by assistantmaster', True, (150,150,150))
 
 background = pygame.image.load("./images/background2.png")
 player1 = pygame.image.load("./images/player1.png")
