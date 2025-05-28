@@ -49,8 +49,8 @@ playerx = 20
 playery = 300
 playerjump = False
 playerjumpindex = 0
-playerspeedx = 0.3
-playerspeedy = 0.5
+playerspeedx = 1.2
+playerspeedy = 2
 jumphight = 200
 
 def is_on_top(player_rect, platform_rect):
@@ -90,6 +90,7 @@ def fade_from_black():
         pygame.display.flip()
         pygame.time.delay(500 // (256 // 16))
 
+clock = pygame.time.Clock()
 running = True
 while running:
     screen.blit(background, (0, 0))
@@ -153,7 +154,7 @@ while running:
                     playery = plat_rect.top - player_rect.height
         else:
             falling = True
-            playery += 1
+            playery += playerspeedy
     if playery > height:
         fade_to_black()
         playerx = 20
@@ -196,5 +197,6 @@ while running:
                     running = False
 
     pygame.display.flip()
+    clock.tick(144)
 
 pygame.quit()

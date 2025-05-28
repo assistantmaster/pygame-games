@@ -19,15 +19,15 @@ copyright = font.render('© 2025 by assistantmaster', True, (150,150,150))
 
 background = pygame.image.load("./images/background2.png")
 player1 = pygame.image.load("./images/player1.png")
-player2 = pygame.image.load("./images/player2.png")
+player2 = pygame.transform.flip(player1, True, False)
 arrow_img = pygame.image.load("./images/arrow.png")
 
 player1x = 20
 player1y = 310
 player2x = 1179
 player2y = 310
-playerspeed = 1
-arrowspeed = 3
+playerspeed = 5
+arrowspeed = 15
 punkte1 = 0
 punkte2 = 0
 gamelength = 60
@@ -82,6 +82,7 @@ for i in range(3, 0, -1):
 
 starttime = time.time()
 
+clock = pygame.time.Clock()
 running = True
 while running:
     currenttime = int(time.time() - starttime)
@@ -174,5 +175,6 @@ while running:
             running = False
 
     pygame.display.flip()
+    clock.tick(60)
 
 pygame.quit()

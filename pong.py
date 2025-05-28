@@ -31,12 +31,12 @@ punkte2display = font3.render(f'Punkte: {punkte2}', True, (255,255,255))
 
 gamelength = 60
 
-pspeed = 1
+pspeed = 6
 if random.randint(0,1) == 0:
-    ballspeedx = 1
+    ballspeedx = 8
 else:
-    ballspeedx = -1
-ballspeedy = random.uniform(-2*math.pi,2*math.pi)/10
+    ballspeedx = -8
+ballspeedy = random.uniform(-math.pi,math.pi)*2
 
 for i in range(3, 0, -1):
     screen.blit(background, (0,0))
@@ -53,6 +53,7 @@ for i in range(3, 0, -1):
 
 starttime = time.time()
 
+clock = pygame.time.Clock()
 running = True
 while running:
     
@@ -96,26 +97,26 @@ while running:
 
     if ballx <= 50 and ballx > 40 and p1y <= bally <= p1y + 100:
         ballspeedx = -ballspeedx
-        ballspeedy += random.randint(-10,10)/10
+        ballspeedy += random.randint(-10,10)/2
 
     if ballx >= screen.get_width()-50 and ballx < screen.get_width()-40 and p2y <= bally <= p2y + 100:
         ballspeedx = -ballspeedx
-        ballspeedy += random.randint(-10,10)/10
+        ballspeedy += random.randint(-10,10)/2
 
     
     if ballx < 0:
         punkte2 += 1
         ballx = screen.get_width()/2
         bally = screen.get_height()/2
-        ballspeedx = 1
-        ballspeedy = random.uniform(-2*math.pi,2*math.pi)/10
+        ballspeedx = 8
+        ballspeedy = random.uniform(-math.pi,math.pi)*2
 
     if ballx > screen.get_width():
         punkte1 += 1
         ballx = screen.get_width()/2
         bally = screen.get_height()/2
-        ballspeedx = -1
-        ballspeedy = random.uniform(-2*math.pi,2*math.pi)/10
+        ballspeedx = -8
+        ballspeedy = random.uniform(-math.pi,math.pi)*2
 
     if int(timeleft) == 0:
         if punkte1 == punkte2:
@@ -136,5 +137,6 @@ while running:
 
     
     pygame.display.flip()
+    clock.tick(60)
 
 pygame.quit()

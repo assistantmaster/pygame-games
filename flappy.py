@@ -16,15 +16,15 @@ copyright = font.render('© 2025 by assistantmaster', True, (150,150,150))
 
 background = pygame.image.load("./images/background4.png")
 player = pygame.image.load("./images/flappy_bird.png")
-pipetop = pygame.image.load("./images/pipe oben.png")
-pipebottom = pygame.image.load("./images/pipe unten.png")
+pipetop = pygame.image.load("./images/pipe.png")
+pipebottom = pygame.transform.flip(pipetop, False, True)
 
 playerx = 50
 playery = 300
-playerspeed = 1
+playerspeed = 5
 punkte = 0
-pipespeedx = 1
-pipefrequency = 500
+pipespeedx = 5
+pipefrequency = 120
 pipegap = 150
 pipesy = []
 pipesx = []
@@ -54,6 +54,8 @@ def collision():
             return False
 
 pipeindex = 150
+
+clock = pygame.time.Clock()
 running = True
 while running:
 
@@ -87,7 +89,7 @@ while running:
             running = False
     
     for i in pipesx:
-        if pipesx[pipesx.index(i)] < 50 and pipesx[pipesx.index(i)] > 50 - pipespeedx:
+        if pipesx[pipesx.index(i)] < 50 and pipesx[pipesx.index(i)] > 50 - 1.5*pipespeedx:
             punkte += 1
     
     if pipesx and pipesx[0] < -pipetop.get_width():
@@ -102,5 +104,6 @@ while running:
             running = False
 
     pygame.display.flip()
+    clock.tick(60)
 
 pygame.quit()

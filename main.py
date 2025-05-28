@@ -17,7 +17,7 @@ font2 = pygame.font.Font(None,100)
 font3 = pygame.font.Font(None,40)
 copyright = font.render('© 2025 by assistantmaster', True, (150,150,150))
 
-jumpnrunimg_orig = pygame.image.load("./images/favicon1.png") # 250x250 pixel
+jumpnrunimg_orig = pygame.image.load("./images/favicon1.png")
 shooterimg_orig = pygame.image.load("./images/favicon2.jpg")
 pongimg_orig = pygame.image.load("./images/favicon3.jpg")
 flappyimg_orig = pygame.image.load("./images/favicon4.png")
@@ -37,6 +37,7 @@ flappy = False
 prozess = None
 window_hidden = False
 
+clock = pygame.time.Clock()
 running = True
 while running:
 
@@ -66,48 +67,69 @@ while running:
             if event.type == pygame.MOUSEBUTTONUP:
                 mouse_clicked = True
 
-        if 55 < mouse[0] < 305 and 55 < mouse[1] < 305:
+        if 132.5 < mouse[0] < 382.5 and 55 < mouse[1] < 305:
             img = pygame.transform.scale(jumpnrunimg_orig, (290,290))
-            screen.blit(img, (35,35))
+            screen.blit(img, (112.5,35))
             if mouse_clicked and not jumpnrun:
                 jumpnrun = True
                 prozess = subprocess.Popen(['python', 'jumpnrun.py'], shell=True)
         else:
             img = pygame.transform.scale(jumpnrunimg_orig, (250,250))
-            screen.blit(img, (55,55))
+            screen.blit(img, (132.5,55))
 
-        if 55 < mouse[0] < 305 and 415 < mouse[1] < 665:
+        if 132.5 < mouse[0] < 382.5 and 415 < mouse[1] < 665:
             img = pygame.transform.scale(shooterimg_orig, (290,290))
-            screen.blit(img, (35,395))
+            screen.blit(img, (112.5,395))
             if mouse_clicked and not shooter:
                 shooter = True
                 prozess = subprocess.Popen(['python', 'shooter.py'], shell=True)
         else:
             img = pygame.transform.scale(shooterimg_orig, (250,250))
-            screen.blit(img, (55,415))
+            screen.blit(img, (132.5,415))
 
-        if 415 < mouse[0] < 665 and 55 < mouse[1] < 305:
+        if 515 < mouse[0] < 765 and 55 < mouse[1] < 305:
             img = pygame.transform.scale(pongimg_orig, (290,290))
-            screen.blit(img, (395,35))
+            screen.blit(img, (495,35))
             if mouse_clicked and not pong:
                 pong = True
                 prozess = subprocess.Popen(['python', 'pong.py'], shell=True)
         else:
             img = pygame.transform.scale(pongimg_orig, (250,250))
-            screen.blit(img, (415,55))
+            screen.blit(img, (515,55))
 
-        if 415 < mouse[0] < 665 and 415 < mouse[1] < 665:
+        if 515 < mouse[0] < 765 and 415 < mouse[1] < 665:
             img = pygame.transform.scale(flappyimg_orig, (290,290))
-            screen.blit(img, (395,395))
+            screen.blit(img, (495,395))
             if mouse_clicked and not flappy:
                 flappy = True
                 prozess = subprocess.Popen(['python', 'flappy.py'], shell=True)
         else:
             img = pygame.transform.scale(flappyimg_orig, (250,250))
-            screen.blit(img, (415,415))
+            screen.blit(img, (515,415))
+            
+        if 897.5 < mouse[0] < 1147.5 and 55 < mouse[1] < 305:
+            img = pygame.transform.scale(pongimg_orig, (290,290))
+            screen.blit(img, (877.5,35))
+            if mouse_clicked and not pong:
+                pong = True
+                prozess = subprocess.Popen(['python', 'pong.py'], shell=True)
+        else:
+            img = pygame.transform.scale(pongimg_orig, (250,250))
+            screen.blit(img, (897.5,55))
+
+        if 897.5 < mouse[0] < 1147.5 and 415 < mouse[1] < 665:
+            img = pygame.transform.scale(pongimg_orig, (290,290))
+            screen.blit(img, (877.5,395))
+            if mouse_clicked and not pong:
+                pong = True
+                prozess = subprocess.Popen(['python', 'pong.py'], shell=True)
+        else:
+            img = pygame.transform.scale(pongimg_orig, (250,250))
+            screen.blit(img, (897.5,415))
 
         screen.blit(copyright, (0,700))
 
     pygame.display.flip()
+    clock.tick(60)
 
 pygame.quit()
