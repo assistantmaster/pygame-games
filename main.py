@@ -21,6 +21,8 @@ jumpnrunimg_orig = pygame.image.load("./images/favicon1.png")
 shooterimg_orig = pygame.image.load("./images/favicon2.jpg")
 pongimg_orig = pygame.image.load("./images/favicon3.jpg")
 flappyimg_orig = pygame.image.load("./images/favicon4.png")
+simonsaysimg_orig = pygame.image.load("./images/favicon5.png")
+fruitcatcherimg_orig = pygame.image.load("./images/favicon6.png")
 
 background = pygame.image.load("./images/background.jpg")
 
@@ -28,6 +30,8 @@ jumpnrunimg = pygame.transform.scale(jumpnrunimg_orig, (250,250))
 shooterimg = pygame.transform.scale(shooterimg_orig, (250,250))
 pongimg = pygame.transform.scale(pongimg_orig, (250,250))
 flappyimg = pygame.transform.scale(flappyimg_orig, (250,250))
+simonsaysimg = pygame.transform.scale(simonsaysimg_orig, (250,250))
+fruitcatcherimg = pygame.transform.scale(fruitcatcherimg_orig, (250,250))
 
 jumpnrun = False
 shooter = False
@@ -108,23 +112,23 @@ while running:
             screen.blit(img, (515,415))
             
         if 897.5 < mouse[0] < 1147.5 and 55 < mouse[1] < 305:
-            img = pygame.transform.scale(pongimg_orig, (290,290))
+            img = pygame.transform.scale(simonsaysimg_orig, (290,290))
             screen.blit(img, (877.5,35))
             if mouse_clicked and not pong:
                 pong = True
-                prozess = subprocess.Popen(['python', 'pong.py'], shell=True)
+                prozess = subprocess.Popen(['python', 'reaktionsklicker.py'], shell=True)
         else:
-            img = pygame.transform.scale(pongimg_orig, (250,250))
+            img = pygame.transform.scale(simonsaysimg_orig, (250,250))
             screen.blit(img, (897.5,55))
 
         if 897.5 < mouse[0] < 1147.5 and 415 < mouse[1] < 665:
-            img = pygame.transform.scale(pongimg_orig, (290,290))
+            img = pygame.transform.scale(fruitcatcherimg_orig, (290,290))
             screen.blit(img, (877.5,395))
             if mouse_clicked and not pong:
                 pong = True
-                prozess = subprocess.Popen(['python', 'pong.py'], shell=True)
+                prozess = subprocess.Popen(['python', 'fruitcatcher.py'], shell=True)
         else:
-            img = pygame.transform.scale(pongimg_orig, (250,250))
+            img = pygame.transform.scale(fruitcatcherimg_orig, (250,250))
             screen.blit(img, (897.5,415))
 
         screen.blit(copyright, (0,700))
