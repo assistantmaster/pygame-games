@@ -85,12 +85,16 @@ while running:
         top_rect = pygame.Rect(pipesx[i], pipesy[i] - pipetop.get_height(), pipetop.get_width(), pipetop.get_height())
         bottom_rect = pygame.Rect(pipesx[i], pipesy[i] + pipegap, pipebottom.get_width(), pipebottom.get_height())
         if player_rect.colliderect(top_rect) or player_rect.colliderect(bottom_rect):
+            pygame.mixer.music.load("./sounds/verloren.mp3")
+            pygame.mixer.music.play(1)
             pygame.time.delay(1000)
             running = False
     
     for i in pipesx:
         if pipesx[pipesx.index(i)] < 50 and pipesx[pipesx.index(i)] > 50 - 1.5*pipespeedx:
             punkte += 1
+            pygame.mixer.music.load("./sounds/punkt.mp3")
+            pygame.mixer.music.play(1)
     
     if pipesx and pipesx[0] < -pipetop.get_width():
         pipesx.pop(0)

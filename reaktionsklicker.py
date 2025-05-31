@@ -1,7 +1,6 @@
 import pygame
 import random
 import time
-import os
 
 pygame.init()
 
@@ -42,9 +41,13 @@ while running:
             y = int(random.randint(0,height - 64))
             text = font3.render(f"Deine Reaktionszeit: {zeit/100:.2f} Sekunden", True, (255,255,255))
             zeit = 0
+            pygame.mixer.music.load("./sounds/punkt.mp3")
+            pygame.mixer.music.play(1)
 
         else:
             running = False
+            pygame.mixer.music.load("./sounds/verloren.mp3")
+            pygame.mixer.music.play(1)
             screen.fill((255, 0, 0))
             text = font3.render("Verloren", True, (255,255,255))
             text_rect = text.get_rect(center=(width//2, height//2))

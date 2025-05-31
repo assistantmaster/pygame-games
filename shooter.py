@@ -112,12 +112,16 @@ while running:
             proj_rect = (projectile["x"], projectile["y"], 20, 10)
             if rects_collide(proj_rect, player_rect):
                 punkte1 += 1
+                pygame.mixer.music.load("./sounds/punktl.mp3")
+                pygame.mixer.music.play(1)
                 projectiles.remove(projectile)
         elif projectile["owner"] == 2:
             player_rect = (player1x, player1y, player1.get_width(), player1.get_height())
             proj_rect = (projectile["x"], projectile["y"], 20, 10)
             if rects_collide(proj_rect, player_rect):
                 punkte2 += 1
+                pygame.mixer.music.load("./sounds/punktr.mp3")
+                pygame.mixer.music.play(1)
                 projectiles.remove(projectile)
 
         if projectile["x"] < 0 or projectile["x"] > width:

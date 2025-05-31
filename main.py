@@ -60,6 +60,8 @@ while running:
         if window_hidden:
             screen = pygame.display.set_mode((width, height), flags=pygame.SHOWN)
             window_hidden = False
+            pygame.mixer.music.load("./sounds/click.mp3")
+            pygame.mixer.music.play(1)
         screen.blit(background, (0,0))
 
         mouse = pygame.mouse.get_pos()
@@ -77,6 +79,8 @@ while running:
             if mouse_clicked and not jumpnrun:
                 jumpnrun = True
                 prozess = subprocess.Popen(['python', 'jumpnrun.py'], shell=True)
+                pygame.mixer.music.load("./sounds/click.mp3")
+                pygame.mixer.music.play(1)
         else:
             img = pygame.transform.scale(jumpnrunimg_orig, (250,250))
             screen.blit(img, (132.5,55))
@@ -87,6 +91,8 @@ while running:
             if mouse_clicked and not shooter:
                 shooter = True
                 prozess = subprocess.Popen(['python', 'shooter.py'], shell=True)
+                pygame.mixer.music.load("./sounds/click.mp3")
+                pygame.mixer.music.play(1)
         else:
             img = pygame.transform.scale(shooterimg_orig, (250,250))
             screen.blit(img, (132.5,415))
@@ -97,6 +103,8 @@ while running:
             if mouse_clicked and not pong:
                 pong = True
                 prozess = subprocess.Popen(['python', 'pong.py'], shell=True)
+                pygame.mixer.music.load("./sounds/click.mp3")
+                pygame.mixer.music.play(1)
         else:
             img = pygame.transform.scale(pongimg_orig, (250,250))
             screen.blit(img, (515,55))
@@ -107,6 +115,8 @@ while running:
             if mouse_clicked and not flappy:
                 flappy = True
                 prozess = subprocess.Popen(['python', 'flappy.py'], shell=True)
+                pygame.mixer.music.load("./sounds/click.mp3")
+                pygame.mixer.music.play(1)
         else:
             img = pygame.transform.scale(flappyimg_orig, (250,250))
             screen.blit(img, (515,415))
@@ -117,6 +127,8 @@ while running:
             if mouse_clicked and not pong:
                 pong = True
                 prozess = subprocess.Popen(['python', 'reaktionsklicker.py'], shell=True)
+                pygame.mixer.music.load("./sounds/click.mp3")
+                pygame.mixer.music.play(1)
         else:
             img = pygame.transform.scale(simonsaysimg_orig, (250,250))
             screen.blit(img, (897.5,55))
@@ -127,6 +139,8 @@ while running:
             if mouse_clicked and not pong:
                 pong = True
                 prozess = subprocess.Popen(['python', 'fruitcatcher.py'], shell=True)
+                pygame.mixer.music.load("./sounds/click.mp3")
+                pygame.mixer.music.play(1)
         else:
             img = pygame.transform.scale(fruitcatcherimg_orig, (250,250))
             screen.blit(img, (897.5,415))

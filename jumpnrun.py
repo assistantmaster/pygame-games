@@ -171,6 +171,8 @@ while running:
             falling = True
             playery += playerspeedy
     if playery > height:
+        pygame.mixer.music.load("./sounds/verloren.mp3")
+        pygame.mixer.music.play(1)
         fade_to_black()
         playerx = 20
         playery = 300
@@ -178,6 +180,8 @@ while running:
         fade_from_black()
 
     if playerx >= 1207:
+        pygame.mixer.music.load("./sounds/punkt.mp3")
+        pygame.mixer.music.play(1)
         fade_to_black()
         pygame.time.delay(500)
         if level < (len(positions) - 1):

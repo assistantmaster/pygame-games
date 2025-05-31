@@ -56,7 +56,7 @@ starttime = time.time()
 clock = pygame.time.Clock()
 running = True
 while running:
-    
+    background = pygame.transform.scale(background, (screen.get_width(),screen.get_height()))
     screen.blit(background, (0,0))
     pygame.draw.rect(screen, (255, 255, 255), (40, p1y, 10, 100))
     pygame.draw.rect(screen, (255, 255, 255), (screen.get_width()-50, p2y, 10, 100))
@@ -106,6 +106,8 @@ while running:
     
     if ballx < 0:
         punkte2 += 1
+        pygame.mixer.music.load("./sounds/punktr.mp3")
+        pygame.mixer.music.play(1)
         ballx = screen.get_width()/2
         bally = screen.get_height()/2
         ballspeedx = 8
@@ -113,6 +115,8 @@ while running:
 
     if ballx > screen.get_width():
         punkte1 += 1
+        pygame.mixer.music.load("./sounds/punktl.mp3")
+        pygame.mixer.music.play(1)
         ballx = screen.get_width()/2
         bally = screen.get_height()/2
         ballspeedx = -8

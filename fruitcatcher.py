@@ -68,6 +68,8 @@ while running:
 
         if player_rect.colliderect(fruit_rect):
             punkte += 1
+            pygame.mixer.music.load("./sounds/punkt.mp3")
+            pygame.mixer.music.play(1)
             fruits.remove(fruit)
         elif fruit["y"] > height:
             fruits.remove(fruit)
