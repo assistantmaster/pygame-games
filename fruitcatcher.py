@@ -90,7 +90,7 @@ while running:
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            running = False
+            pygame.quit()
 
     if int(timeleft) == 0:
         screen.blit(background, (0,0))
@@ -99,10 +99,19 @@ while running:
         screen.blit(timedisplay, (screen.get_width() // 2 - timedisplay.get_width() // 2, 20))
         screen.blit(copyright, (0,700))
         pygame.display.flip()
-        pygame.time.delay(3000)
+        pygame.time.delay(700)
         running = False 
 
     pygame.display.flip()
     clock.tick(60)
 
+game_over_text = font2.render("Zeit vorbei", True, (255, 255, 255))
+score_text = font3.render(f"Du hast {punkte} Früchte gefangen", True, (255, 255, 255))
+if punkte == 1 or punkte == -1:
+    score_text = font3.render(f"Du hast {punkte} Frucht gefangen", True, (255, 255, 255))
+screen.fill((0, 180, 255))
+screen.blit(game_over_text, (width/2 - (game_over_text.get_width()/2), height/2 - (game_over_text.get_height()/2)))
+screen.blit(score_text, (width/2 - (score_text.get_width()/2), 440))
+pygame.display.flip()
+pygame.time.delay(3000)
 pygame.quit()

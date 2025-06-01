@@ -11,7 +11,8 @@ pygame.display.set_caption("Flappy Bird")
 pygame.display.set_icon(pygame.image.load("./images/favicon4.png"))
 
 font = pygame.font.Font(None,20)
-font2 = pygame.font.Font(None,40)
+font2 = pygame.font.Font(None, 100)
+font3 = pygame.font.Font(None,40)
 copyright = font.render('© 2025 by assistantmaster', True, (150,150,150))
 
 background = pygame.image.load("./images/background4.png")
@@ -62,7 +63,7 @@ while running:
     screen.blit(background, (0,0))
     move_pipes()
     screen.blit(player, (playerx,playery))
-    punktedisplay = font2.render(f'Punkte: {punkte}', True, (255,255,255))
+    punktedisplay = font3.render(f'Punkte: {punkte}', True, (255,255,255))
     screen.blit(punktedisplay, (20, 20))
     screen.blit(copyright, (0,700))
 
@@ -105,9 +106,19 @@ while running:
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            running = False
+            pygame.quit()
 
     pygame.display.flip()
     clock.tick(60)
 
+		
+game_over_text = font2.render("GAME OVER", True, (255, 255, 255))
+score_text = font3.render(f"Du hast {punkte} Hindernisse überwunden", True, (255, 255, 255))
+if punkte == 1:
+    score_text = font3.render(f"Du hast {punkte} Hindernis überwunden", True, (255, 255, 255))
+screen.fill((255, 0, 0))
+screen.blit(game_over_text, (width/2 - (game_over_text.get_width()/2), height/2 - (game_over_text.get_height()/2)))
+screen.blit(score_text, (width/2 - (score_text.get_width()/2), 440))
+pygame.display.flip()
+pygame.time.delay(3000)
 pygame.quit()
