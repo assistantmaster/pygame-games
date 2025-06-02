@@ -134,18 +134,11 @@ while running:
     if playerjump:
         if playerjumpindex < (jumpheight/playerspeedy):
             playery -= playerspeedy
-        if playerjumpindex > (jumpheight/playerspeedy) and not (
-            is_on_top(player_rect, p1_rect) or
-            is_on_top(player_rect, p2_rect) or
-            is_on_top(player_rect, p3_rect) or
-            is_on_top(player_rect, p4_rect) or
-            is_on_top(player_rect, p5_rect) or
-            is_on_top(player_rect, p6_rect)):
-            playery += playerspeedy
-        playerjumpindex += 1
-        if playerjumpindex >= 2*(jumpheight/playerspeedy):
+        if playerjumpindex > (jumpheight/playerspeedy):
+            falling = True
             playerjump = False
             playerjumpindex = 0
+        playerjumpindex += 1
     else:
         if (is_on_top(player_rect, p1_rect) or
             is_on_top(player_rect, p2_rect) or
