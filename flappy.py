@@ -13,7 +13,7 @@ pygame.display.set_icon(pygame.image.load("./images/favicon4.png"))
 font = pygame.font.Font(None,20)
 font2 = pygame.font.Font(None, 100)
 font3 = pygame.font.Font(None,40)
-copyright = font.render('© 2025 by assistantmaster', True, (150,150,150))
+copyright = font.render('© 2025 by Doktor_TG und assistantmaster', True, (150,150,150))
 
 background = pygame.image.load("./images/background4.png")
 player = pygame.image.load("./images/flappy_bird.png")

@@ -17,7 +17,7 @@ font3 = pygame.font.Font(None,40)
 
 background = pygame.image.load("./images/background6.jpg")
 player = pygame.image.load("./images/player6.png")
-copyright = font.render('© 2025 by assistantmaster', True, (150,150,150))
+copyright = font.render('© 2025 by Doktor_TG und assistantmaster', True, (150,150,150))
 
 fruitimgs = [
     pygame.image.load("./images/apple.png")
