@@ -22,11 +22,14 @@ copyright = font.render('© 2025 by assistantmaster', True, (150,150,150))
 x = int(random.randint(0,width - 64))
 y = int(random.randint(0,height - 64))
 zeit = 0
+highscore = float('inf')
 mouse = False
 
 clock = pygame.time.Clock()
 running = True
 while running:
+    if highscore != float('inf'):
+        pygame.display.set_caption(f"Reaktionsklicker - Dein Highscore: {highscore/100:.2f} Sekunden")
     text_rect = text.get_rect(center=(width//2, height//2))
     screen.blit(background, (0,0))
     pygame.draw.rect(screen, (255,0,0), (x, y, 64, 64))
@@ -40,6 +43,8 @@ while running:
             x = int(random.randint(0,width - 64))
             y = int(random.randint(0,height - 64))
             text = font3.render(f"Deine Reaktionszeit: {zeit/100:.2f} Sekunden", True, (255,255,255))
+            if zeit < highscore:
+                highscore = zeit
             zeit = 0
             pygame.mixer.music.load("./sounds/punkt.mp3")
             pygame.mixer.music.play(1)
@@ -48,10 +53,14 @@ while running:
             running = False
             pygame.mixer.music.load("./sounds/verloren.mp3")
             pygame.mixer.music.play(1)
+            pygame.display.set_caption("Reaktionsklicker")
             screen.fill((255, 0, 0))
             text = font3.render("Verloren", True, (255,255,255))
+            highscoretext = font3.render(f"Dein Highscore war {highscore/100:.2f} Sekunden", True, (255,255,255))
             text_rect = text.get_rect(center=(width//2, height//2))
+            highscoretext_rect = highscoretext.get_rect(center=(width//2, height//2+100))
             screen.blit(text, text_rect)
+            screen.blit(highscoretext, highscoretext_rect)
             pygame.display.flip()
             pygame.time.delay(3000)
 
